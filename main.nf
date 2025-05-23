@@ -5,13 +5,14 @@ process sayHello {
     val x
 
     output:
-    stdout
+    file("${x}.txt")
 
     script:
     """
-    echo '${x} world!'
+    echo '${x} world!' > ${x}.txt
     """
 }
+
 
 workflow {
     Channel.of('Bonjour', 'Ciao', 'Hello', 'Hola') | sayHello | view
